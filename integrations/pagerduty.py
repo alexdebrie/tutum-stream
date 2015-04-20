@@ -27,8 +27,8 @@ def pagerduty_event(event_type="trigger", incident_key=None, description=None, c
         print "Posted {} to Pagerduty.".format(event_type)
     else:
         print "Failed to post {} to Pagerduty.".format(event_type)
-        error_code = r.json()['error']['code']
-        message = r.json()['error']['message']
-        errors = r.json()['error']['errors']
+        error_code = r.json().get('error').get('code')
+        message = r.json().get('error').get('message')
+        errors = r.json().get('error').get('errors')
         print "{} ({}): {}".format(message, error_code, errors)
     
