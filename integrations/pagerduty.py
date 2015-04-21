@@ -8,6 +8,9 @@ PAGERDUTY_KEY = os.environ.get('PAGERDUTY_KEY', '')
 def pagerduty_event(event_type="trigger", incident_key=None, description=None, client=None, client_url=None, service_key=PAGERDUTY_KEY):
     if not service_key:
        raise Exception("Please provide a Pagerduty Service Key")
+
+    if not description:
+        description = "Tutum Stream Issue"
     
     data = {
         "service_key": service_key,
@@ -31,4 +34,3 @@ def pagerduty_event(event_type="trigger", incident_key=None, description=None, c
         message = r.json().get('error').get('message')
         errors = r.json().get('error').get('errors')
         print "{} ({}): {}".format(message, error_code, errors)
-    
