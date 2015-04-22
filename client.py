@@ -1,27 +1,29 @@
 import os
 import websocket
 import json
+
+from integrations.slack import post_slack
+from integrations.pagerduty import pagerduty_event
  
 def on_error(ws, error):
     print error
  
 def on_close(ws):
+    pagerduty_event(event_type='trigger', incident_key='tutum-stream', description='Tutum Stream connection closed.')
     print "### closed ###"
  
 def on_message(ws, message):
-    print 'Received message'
     msg_as_JSON = json.loads(message)
     type = msg_as_JSON.get("type")
     if type:
-        print message
-        """
         if type == "auth":
             print("Auth completed")
         elif type != "user-notifications":
             print("{}:{}:{}:{}:{}".format(type, msg_as_JSON.get("action"), msg_as_JSON.get("state"), msg_as_JSON.get("resource_uri"), msg_as_JSON.get("parents")))
-        """
  
 def on_open(ws):
+    post_slack(text="Connected to Tutum Stream!")
+    pagerduty_event(event_type='resolve', incident_key='tutum-stream', description='Tutum Stream connection open.')
     print "Connected"
  
 if __name__ == "__main__":
@@ -35,4 +37,7 @@ if __name__ == "__main__":
         on_close = on_close,
         on_open = on_open)
  
-    ws.run_forever() 
+    try:
+        ws.run_forever()
+    except KeyboardInterrupt:
+        pass
