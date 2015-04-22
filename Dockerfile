@@ -7,11 +7,9 @@ RUN apk add --update \
     build-base \
   && rm -rf /var/cache/apk/*
 
+COPY . /app
 WORKDIR /app
-COPY requirements.txt /app
 
 RUN pip install -r requirements.txt
-
-COPY . /app
 
 CMD ["/usr/bin/python", "client.py"]
