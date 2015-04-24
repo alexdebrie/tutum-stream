@@ -10,7 +10,7 @@ def on_error(ws, error):
     print error
  
 def on_close(ws):
-    #pagerduty_event(event_type='trigger', incident_key='tutum-stream', description='Tutum Stream connection closed.')
+    pagerduty_event(event_type='trigger', incident_key='tutum-stream', description='Tutum Stream connection closed.')
     print "### closed ###"
  
 def on_message(ws, message):
@@ -35,7 +35,7 @@ def on_message(ws, message):
             print("{}:{}:{}:{}:{}".format(type, msg_as_JSON.get("action"), msg_as_JSON.get("state"), msg_as_JSON.get("resource_uri"), msg_as_JSON.get("parents")))
  
 def on_open(ws):
-    #pagerduty_event(event_type='resolve', incident_key='tutum-stream', description='Tutum Stream connection open.')
+    pagerduty_event(event_type='resolve', incident_key='tutum-stream', description='Tutum Stream connection open.')
     print "Connected"
  
 if __name__ == "__main__":
