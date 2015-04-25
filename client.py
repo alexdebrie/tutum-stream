@@ -40,14 +40,22 @@ def on_open(ws):
  
 if __name__ == "__main__":
     websocket.enableTrace(False)
-    token = os.environ['TUTUM_TOKEN']
-    username = os.environ['TUTUM_USERNAME']
- 
-    ws = websocket.WebSocketApp('wss://stream.tutum.co/v1/events?token={}&user={}'.format(token, username),
-        on_message = on_message,
-        on_error = on_error,
-        on_close = on_close,
-        on_open = on_open)
+    token = os.environ.get('TUTUM_TOKEN')
+    username = os.environ.get('TUTUM_USERNAME')
+    TUTUM_AUTH = os.environ.get('TUTUM_AUTH')
+
+    if TUTUM_AUTH:
+        url = 'wss://stream.tutum.co/v1/events?auth={}'.format(TUTUM_AUTH)
+    elif token and username:
+        url = 'wss://stream.tutum.co/v1/events?token={}&user={}'.format(token, username)
+    else:
+        raise Exception("Please provide authentication credentials")
+
+    ws = websocket.WebSocketApp(url, 
+                                on_message = on_message,
+                                on_error = on_error,
+                                on_close = on_close,
+                                on_open = on_open)
  
     try:
         ws.run_forever()
