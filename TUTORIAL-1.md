@@ -11,7 +11,7 @@ of changes to your application.
 
 This is part one of a two-part tutorial will show you how to use the
 Tutum Stream API. This part will cover the basics of WebSockets and
-the Tutum Stream API. Part two[BL: INSERT LINK] will show how to use the Tutum Stream
+the Tutum Stream API. Part two will show how to use the Tutum Stream
 API for some common use cases, such as integrations with Slack, Pagerduty,
 and others.
 
@@ -147,5 +147,5 @@ to see all of the attributes that will be returned.
 This tutorial has covered the basics of WebSockets and using a WebSocket client.
 It then reviewed the structure of Tutum Event messages to get a feel for what
 WebSocket messages you will receive from the Tutum Stream API. Check out
-Part Two[BL: INSERT LINK] of this tutorial to get an idea of how to deploy your WebSocket client
+Part Two of this tutorial to get an idea of how to deploy your WebSocket client
 as a Tutum service that sends notifications to Slack, Pagerduty, and more.
