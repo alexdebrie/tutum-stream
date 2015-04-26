@@ -11,7 +11,7 @@ of changes to your application.
 
 This is part one of a two-part tutorial will show you how to use the
 Tutum Stream API. This part will cover the basics of WebSockets and
-the Tutum Stream API. Part two will show how to use the Tutum Stream
+the Tutum Stream API. Part two[BL: INSERT LINK] will show how to use the Tutum Stream
 API for some common use cases, such as integrations with Slack, Pagerduty,
 and others.
 
@@ -113,10 +113,10 @@ when I restarted a service (UUIDs are anonymized):
 
 When breaking this down, we can see that Tutum is *creating* (from the `action`
 attribute), a *container* (from the `type` attribute), and it provides the
-`resource_uri` of that container. It also provides a list of `parent` values. 
+`resource_uri` of that container. It also provides a list of `parent` values.
 I can use these values to find the objects that this container belongs to, such
-as the particular Node or the Node Cluster, if I'm interested in the hardware, 
-or the Service or Stack, if I'm tracking that all my services are working. 
+as the particular Node or the Node Cluster, if I'm interested in the hardware,
+or the Service or Stack, if I'm tracking that all my services are working.
 
 ###Using Parents or Resource URIs
 
@@ -124,7 +124,7 @@ When handling this Event, I may want to use of the `parents` or the `resource_ur
 to send acquire additional information. For example, when I discover that I created
 a new container above, I may want to check the state of the Stack to which the
 new container belongs. I can issue a `GET` request to the Stack endpoint, which
-was `"/api/v1/stack/f24bca18-e1dd-40aa-9b3c-064c0c26683e/"` in the example above. 
+was `"/api/v1/stack/f24bca18-e1dd-40aa-9b3c-064c0c26683e/"` in the example above.
 I'll get a response with the following information:
 
     {
@@ -135,7 +135,7 @@ I'll get a response with the following information:
     }
 
 This would indicate that my Stack is only partially running and that there may be
-a problem with my deployment. Based on this information, I may want to send a 
+a problem with my deployment. Based on this information, I may want to send a
 Pagerduty alert to check out any problems with the Stack.
 
 Note that this is only a small subset of the information I would receive from the
@@ -146,6 +146,6 @@ to see all of the attributes that will be returned.
 
 This tutorial has covered the basics of WebSockets and using a WebSocket client.
 It then reviewed the structure of Tutum Event messages to get a feel for what
-WebSocket messages you will receive from the Tutum Stream API. Check out 
-Part Two of this tutorial to get an idea of how to deploy your WebSocket client
+WebSocket messages you will receive from the Tutum Stream API. Check out
+Part Two[BL: INSERT LINK] of this tutorial to get an idea of how to deploy your WebSocket client
 as a Tutum service that sends notifications to Slack, Pagerduty, and more.

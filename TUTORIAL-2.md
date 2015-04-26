@@ -267,8 +267,11 @@ In your Tutum browser, set up a Stack file with Stream:
       environment:
        - PAGERDUTY_KEY=<your_Pagerduty_key>
        - SLACK_URL=<your_Slack_url>
-       - TUTUM_TOKEN=<your_Tutum_token>
-       - TUTUM_USERNAME=<your_Tutum_username>
+      roles:
+       - global
+
+We're giving the "global" API role to the service so that it has full access
+to the Tutum API. You can read about API roles [here](https://support.tutum.co/support/solutions/articles/5000524639-api-roles).
 
 Hit "Create and Deploy" and you're done! You'll be receiving Slack messages
 and Pagerduty alerts with updates to your Tutum infrastructure!
