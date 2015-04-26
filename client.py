@@ -45,6 +45,7 @@ if __name__ == "__main__":
     TUTUM_AUTH = os.environ.get('TUTUM_AUTH')
 
     if TUTUM_AUTH:
+        TUTUM_AUTH = TUTUM_AUTH.replace(' ', '%20')
         url = 'wss://stream.tutum.co/v1/events?auth={}'.format(TUTUM_AUTH)
     elif token and username:
         url = 'wss://stream.tutum.co/v1/events?token={}&user={}'.format(token, username)
